@@ -14,22 +14,22 @@
 
 char	*ft_strtrim(char const *s)
 {
-	char	*str;
-	size_t	i;
-	size_t	j;
-	size_t	k;
+	int		i;
+	int		len;
 
-	k = 0;
 	i = 0;
-	j = 0;
-	while (s[i] && (s[i] == ' ' || s[i] == '\n' || s[i] == '\t'))
-		i++;
-	while (s[i + j])
-		j++;
-	while (j > 0 && (s[j + i - 1 - k] == ' ' || s[i + j - 1 - k] == '\n' ||
-			s[i + j - 1 - k] == '\t'))
-		k++;
-	str = ft_strnew(j - k + 1);
-	ft_strncpy(str, s + i, j - k);
-	return (str);
+	if (s)
+	{
+		len = ft_strlen(s) - 1;
+		while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+		{
+			i++;
+			if (s[i] == '\0')
+				return (ft_strdup(""));
+		}
+		while (s[len] == ' ' || s[len] == '\n' || s[len] == '\t')
+			len--;
+		return (ft_strsub(s, i, (len - i + 1)));
+	}
+	return (0);
 }

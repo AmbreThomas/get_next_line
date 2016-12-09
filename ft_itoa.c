@@ -10,52 +10,48 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-int		max_pow(int n)
+static void		lengths(int n, size_t *len, int *weight)
 {
-	int i;
-
-	i = 0;
-	while (n)
+	*len = 1;
+	if (n >= 0)
 	{
-		n /= 10;
-		i++;
+		*len = 0;
+		n = -n;
 	}
-	i--;
-	return (i);
+	*weight = 1;
+	while (n / *weight < -9)
+	{
+		*weight *= 10;
+		*len += 1;
+	}
 }
 
-int		ft_pow(int n)
+char			*ft_itoa(int n)
 {
-	int		res;
+	size_t	len;
+	int		weight;
+	size_t	cur;
+	char	*str;
 
-	res = 1;
-	while (n > 0)
-	{
-		res *= 10;
-		n--;
-	}
-	return (res);
-}
-
-char	*ft_itoa(int n)
-{
-	char	*s;
-	int		puissance;
-	int		i;
-
-	s = 0;
-	puissance = max_pow(n);
-	if ((s = (char*)malloc((puissance + 1) * sizeof(char))) == NULL)
+	lengths(n, &len, &weight);
+	str = (char *)malloc(sizeof(*str) * (len + 1));
+	if (str == NULL)
 		return (NULL);
-	i = 0;
-	while (n)
+	cur = 0;
+	if (n < 0)
 	{
-		s[i] = n / ft_pow(puissance) + '0';
-		n = n - (n / ft_pow(puissance) * ft_pow(puissance));
-		puissance--;
-		i++;
+		str[cur] = '-';
+		cur++;
 	}
-	return (s);
+	if (n > 0)
+		n = -n;
+		while (weight >= 1)
+		{
+			str[cur++] = -(n / weight % 10) + 48;
+			weight /= 10;
+		}
+	str[cur] = 0;
+	return (str);
 }

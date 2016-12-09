@@ -12,62 +12,64 @@
 
 #include "stdlib.h"
 
-int		count_words(char *str, char c)
+static int		ft_wd_count(char const *s, char c)
 {
-	int count;
+	int		i;
+	int		count;
 
 	count = 0;
-	while (*str && *str == c)
-		str++;
-	while (*str)
+	i = 0;
+	while (s[i])
 	{
-		if (*str && *str != c)
+		if (s[i] != c && (i == 0 || s[i - 1] == c))
 			count++;
-		while (*str && *str != c)
-			str++;
-		while (*str && *str == c)
-			str++;
+		i++;
 	}
 	return (count);
 }
 
-int		count_lenwords(char *str, int i, char c)
+static char		*ft_word(char const *s, char c)
 {
-	int size;
+	char	*str;
+	int		i;
+	int		j;
 
-	size = 0;
-	while (str[i] && str[i] != c)
-	{
-		size++;
-		i++;
-	}
-	return (size);
+	str = NULL;
+	if (!(str = malloc(sizeof(char) * (ft_strlen(s) + 1))))
+		return (str);
+	i = 0;
+	j = 0;
+	while (s[i] != c && s[i] != '\0')
+		str[j++] = s[i++];
+	str[j] = '\0';
+	return (str);
 }
 
-char	**ft_strsplit(char const *s, char c)
+char			**ft_strsplit(char const *s, char c)
 {
-	char	**mots;
-	int		j;
+	char	**tab;
 	int		i;
-	int		t;
-	int		taille;
+	int		j;
+	int		wrd;
 
-	mots = (char**)malloc(sizeof(char*) * (count_words((char*)s, c) + 1));
 	i = 0;
-	t = 0;
-	while (((char*)s)[i])
+	j = 0;
+	if (!(s && c))
+		return (NULL);
+	wrd = ft_wd_count(s, c);
+	if (!(tab = malloc(sizeof(char*) * (wrd + 1))))
+		return (tab);
+	while (s[i])
 	{
-		if (((char*)s)[i] != c)
+		if (s[i] == c)
+			i++;
+		else
 		{
-			j = 0;
-			taille = count_lenwords((char*)s, i, c);
-			mots[t] = (char*)malloc(sizeof(char) * (taille));
-			while (j < taille)
-				mots[t][j++] = ((char*)s)[i++];
-			mots[t++][j] = '\0';
+			tab[j++] = ft_word(s + i, c);
+			while (s[i] != c && s[i])
+				i++;
 		}
-		i++;
 	}
-	mots[t] = NULL;
-	return (mots);
+	tab[j] = 0;
+	return (tab);
 }
