@@ -12,46 +12,35 @@
 
 #include "libft.h"
 
-static void		lengths(int n, size_t *len, int *weight)
+static size_t	get_str_len(int n)
 {
-	*len = 1;
-	if (n >= 0)
-	{
-		*len = 0;
-		n = -n;
-	}
-	*weight = 1;
-	while (n / *weight < -9)
-	{
-		*weight *= 10;
-		*len += 1;
-	}
+	size_t		i;
+
+	i = 1;
+	while (n /= 10)
+		i++;
+	return (i);
 }
 
 char			*ft_itoa(int n)
 {
-	size_t	len;
-	int		weight;
-	size_t	cur;
-	char	*str;
+	char			*str;
+	size_t			str_len;
+	unsigned int	n_cpy;
 
-	lengths(n, &len, &weight);
-	str = (char *)malloc(sizeof(*str) * (len + 1));
-	if (str == NULL)
-		return (NULL);
-	cur = 0;
+	str_len = get_str_len(n);
+	n_cpy = n;
 	if (n < 0)
 	{
-		str[cur] = '-';
-		cur++;
+		n_cpy = -n;
+		str_len++;
 	}
-	if (n > 0)
-		n = -n;
-		while (weight >= 1)
-		{
-			str[cur++] = -(n / weight % 10) + 48;
-			weight /= 10;
-		}
-	str[cur] = 0;
+	if (!(str = ft_strnew(str_len)))
+		return (0);
+	str[--str_len] = n_cpy % 10 + '0';
+	while (n_cpy /= 10)
+		str[--str_len] = n_cpy % 10 + '0';
+	if (n < 0)
+		*(str + 0) = '-';
 	return (str);
 }

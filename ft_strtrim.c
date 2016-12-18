@@ -12,24 +12,62 @@
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+static size_t		ft_count_first_space(char const *str)
 {
-	int		i;
-	int		len;
+	size_t	i;
+	size_t	count;
 
 	i = 0;
-	if (s)
+	count = 0;
+	while (str[i] && (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'))
 	{
-		len = ft_strlen(s) - 1;
-		while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
-		{
-			i++;
-			if (s[i] == '\0')
-				return (ft_strdup(""));
-		}
-		while (s[len] == ' ' || s[len] == '\n' || s[len] == '\t')
-			len--;
-		return (ft_strsub(s, i, (len - i + 1)));
+		count++;
+		i++;
 	}
-	return (0);
+	return (count);
+}
+
+static size_t		ft_count_end_space(char const *str)
+{
+	size_t	i;
+	size_t	count;
+	size_t	len;
+
+	len = ft_strlen(str);
+	i = len - 1;
+	if (len == 0)
+		return (0);
+	count = 0;
+	while (i > 0 && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'))
+	{
+		count++;
+		i--;
+	}
+	return (count);
+}
+
+char				*ft_strtrim(char const *s)
+{
+	char	*str;
+	size_t	i;
+	size_t	j;
+	size_t	endspce;
+	size_t	len;
+
+	i = ft_count_first_space(s);
+	endspce = ft_count_end_space(s);
+	len = ft_strlen(s);
+	if (len - i <= 0)
+		return (ft_strdup(""));
+	j = 0;
+	str = ft_strnew(len - i - endspce);
+	if (!str)
+		return (NULL);
+	while (s[i] != '\0' && i < len - endspce)
+	{
+		str[j] = s[i];
+		i++;
+		j++;
+	}
+	return (str);
 }

@@ -3,8 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athomas <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*   By: athomas <marvin@42.fr>                     +#+  +:+       +#+        *//*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/12 12:14:07 by athomas           #+#    #+#             */
 /*   Updated: 2016/07/12 12:14:49 by athomas          ###   ########.fr       */
 /*                                                                            */
@@ -12,7 +11,7 @@
 
 #include "libft.h"
 
-void	ft_putchar(int c)
+void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }

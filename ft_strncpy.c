@@ -12,16 +12,16 @@
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t n)
+char	*ft_strncpy(char *dest, const char *src, size_t len)
 {
-	char	*ret;
-	size_t	start;
+	size_t	i;
 
-	ret = (char *)dst;
-	start = n;
-	while (*src && n--)
-		*dst++ = *src++;
-	if (n < start)
-		ft_bzero(dst, n);
-	return (ret);
+	i = 0;
+	ft_memset(dest, '\0', len);
+	while (i < len && src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	return (dest);
 }

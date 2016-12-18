@@ -14,10 +14,17 @@
 
 char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	char	*str;
+	unsigned int	i;
+	char			*str;
 
-	str = ft_strnew(len + 1);
-	ft_strncpy(str, s + start, len);
-	str[ft_strlen(str) - 1] = 0;
+	i = 0;
+	str = ft_strnew(len);
+	if (!str)
+		return (NULL);
+	while (i < len)
+	{
+		str[i] = s[start + i];
+		i++;
+	}
 	return (str);
 }
