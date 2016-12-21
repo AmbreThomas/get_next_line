@@ -6,7 +6,7 @@
 /*   By: athomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/11 15:42:27 by athomas           #+#    #+#             */
-/*   Updated: 2016/07/11 17:04:59 by athomas          ###   ########.fr       */
+/*   Updated: 2016/12/21 10:42:09 by athomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*ft_memmove(void *dest, void const *src, size_t n)
 	{
 		while (n > 0)
 		{
-			((char*)dest)[n - 1] = ((char*)src)[n -1];
+			((char*)dest)[n - 1] = ((char*)src)[n - 1];
 			n--;
 		}
 	}

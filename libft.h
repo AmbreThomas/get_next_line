@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: athomas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/12/21 10:37:08 by athomas           #+#    #+#             */
+/*   Updated: 2016/12/21 10:54:50 by athomas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -16,6 +28,10 @@ void			*ft_memalloc(size_t size);
 void			ft_memdel(void **ap);
 char			*ft_strnew(size_t size);
 void			ft_strdel(char **as);
+void			ft_swap(int *a, int *b);
+int				ft_recursive_fqctoriql(int nb);
+int				ft_sqrt(int nb);
+void			ft_foreach(int *tab, int length, void (*f)(int));
 void			ft_strclr(char *s);
 void			ft_striter(char *s, void (*f)(char *));
 void			ft_striteri(char *s, void (*f)(unsigned int, char *));
@@ -47,7 +63,7 @@ size_t			ft_strlen(char const *s);
 char			*ft_strdup(char const *s);
 char			*ft_strcpy(char *dest, char const *src);
 char			*ft_strncpy(char *dest, char const *src, size_t n);
-char			*ft_strcat(char*, char*);
+char			*ft_strcat(char *dest, char *src);
 char			*ft_strncat(char *dest, char const *src, size_t n);
 char			*ft_strchr(char const *s, int c);
 char			*ft_strrchr(char const *s, int c);

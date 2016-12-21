@@ -6,7 +6,7 @@
 /*   By: athomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/07 18:22:43 by athomas           #+#    #+#             */
-/*   Updated: 2016/07/12 18:32:52 by athomas          ###   ########.fr       */
+/*   Updated: 2016/12/21 10:33:22 by athomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	unsigned int	i;
 	char			*str;
 
+	if (s == 0)
+		return (0);
 	i = 0;
 	str = ft_strnew(len);
 	if (!str)

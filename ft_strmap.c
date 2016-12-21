@@ -6,7 +6,7 @@
 /*   By: athomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/07 18:22:43 by athomas           #+#    #+#             */
-/*   Updated: 2016/07/12 18:32:52 by athomas          ###   ########.fr       */
+/*   Updated: 2016/12/21 10:14:08 by athomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strmap(char const *s, char (*f)(char))
 	char	*new_s;
 	int		i;
 
+	if (s == 0)
+		return (0);
 	i = 0;
 	if ((new_s = (char*)malloc(sizeof(char) * ft_strlen(s) + 1)) == NULL)
 		return (0);

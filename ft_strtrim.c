@@ -6,7 +6,7 @@
 /*   By: athomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/07 18:22:43 by athomas           #+#    #+#             */
-/*   Updated: 2016/07/12 18:32:52 by athomas          ###   ########.fr       */
+/*   Updated: 2016/12/21 10:35:57 by athomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ char				*ft_strtrim(char const *s)
 	size_t	endspce;
 	size_t	len;
 
+	if (s == 0)
+		return (0);
 	i = ft_count_first_space(s);
 	endspce = ft_count_end_space(s);
 	len = ft_strlen(s);
