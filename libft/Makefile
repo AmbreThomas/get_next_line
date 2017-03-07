@@ -27,7 +27,7 @@ ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c \
 ft_lstpushback.c ft_foreach.c ft_sqrt.c ft_recursive_factorial.c \
 ft_swap.c
 OBJ = $(SRC:.c=.o)
-HEADERS = libft.h
+HEADERS = ./includes/
 NAME = libft.a
 
 .PHONY: all, clean, fclean, re
@@ -38,8 +38,8 @@ $(NAME) : $(OBJ)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
-$(OBJ) : $(SRC) $(HEADERS)
-	$(CC) -c $(SRC) $(FLAGS)
+$(OBJ) : $(SRC)
+	$(CC) -c $(SRC) $(FLAGS) -I $(HEADERS)
 
 clean :
 	/bin/rm -f $(OBJ)

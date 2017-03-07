@@ -1,6 +1,9 @@
-#ifndef _GET_NEXT_LINE_H_
-# define _GET_NEXT_LINE_H_
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
+# include <fcntl.h>
+# include "libft/includes/libft.h"
+# include <unistd.h>
 # include <stdlib.h>
 
 # define BUFF_SIZE 32
